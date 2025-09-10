@@ -5,11 +5,11 @@ import { Appcontext } from "../context/context";
 const NextData = () => {
   let { lat, long } = useContext(Appcontext);
   let [weather, setWeather] = useState([]);
-
+  const appId= import.meta.env.VITE_APP_ID;
   const fetchData = async () => {
     try {
       let { data } = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=d02e09b5229c4f974b4715dbceefc352&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${appId}&units=metric`
       );
       setWeather(data?.list || []);
     } catch (err) {
