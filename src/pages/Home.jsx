@@ -4,10 +4,10 @@ import { Appcontext } from "../context/context";
 
 const Home = () => {
   const {data,setData,val,setVal,setFlag,lat,long,setLat,setLong}=useContext(Appcontext)
-
+  const appId= import.meta.env.VITE_APP_ID;
   const fetchData = async (lat, lon) => {
     let { data } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=d02e09b5229c4f974b4715dbceefc352&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}&units=metric`
     );
     setData(data);
   };
@@ -26,7 +26,7 @@ const Home = () => {
     setVal(val);
     if (val.length > 2) {
       const { data } = await axios(
-        `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=d02e09b5229c4f974b4715dbceefc352&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=${appId}&units=metric`
       );
       console.log(data);
       setLat(data.coord.lat);
